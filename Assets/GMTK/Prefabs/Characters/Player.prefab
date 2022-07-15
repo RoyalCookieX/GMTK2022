@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8657225018170846017}
   - component: {fileID: 5293516508585435358}
   - component: {fileID: 4592921920877103666}
-  - component: {fileID: 7906163958234479362}
   m_Layer: 0
   m_Name: Visor
   m_TagString: Untagged
@@ -84,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7906163958234479362
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6238722042412378892}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6815185665190581107
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +182,7 @@ GameObject:
   - component: {fileID: 446443435560455091}
   - component: {fileID: 8281530409155256969}
   - component: {fileID: 918868077555057885}
-  - component: {fileID: 8299541243251367695}
+  - component: {fileID: 4713016828938889792}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -271,7 +256,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8299541243251367695
+--- !u!136 &4713016828938889792
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -294,9 +279,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 101302631930111081}
-  - component: {fileID: 8226758271839980352}
-  - component: {fileID: 4455987413535134267}
+  - component: {fileID: 4075983844510851457}
+  - component: {fileID: 2421781357910290737}
   - component: {fileID: 1057086806374202169}
+  - component: {fileID: 2036882207504347706}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -321,19 +307,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8226758271839980352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8781399979702127740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fb746b4f3c1e49448a922ff1c0b8518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4455987413535134267
+--- !u!114 &4075983844510851457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -345,7 +319,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 280c18bd17fd6d74ab7fb915ae91b83b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _test: {x: 0, y: 0}
+  _characterMovement: {fileID: 2421781357910290737}
+--- !u!114 &2421781357910290737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8781399979702127740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c94e12ac23dcf354986d92b77a3af14f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 2036882207504347706}
+  _navMeshAgent: {fileID: 0}
+  _moveSpeed: 50
+  _yawSpeed: 50
 --- !u!114 &1057086806374202169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,6 +367,22 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!54 &2036882207504347706
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8781399979702127740}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 3
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!1 &9033196249227817485
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,7 +444,7 @@ MonoBehaviour:
   m_VerticalAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 250
+    m_MaxSpeed: 200
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
