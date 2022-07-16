@@ -18,6 +18,7 @@ public class GravityWell : MonoBehaviour
         _targetPosition = transform.position;
         _sphereCollider = GetComponent<SphereCollider>();
         _sphereCollider.radius = _radius;
+        _sphereCollider.isTrigger = true;
     }
 
     private void OnTriggerStay(Collider other)

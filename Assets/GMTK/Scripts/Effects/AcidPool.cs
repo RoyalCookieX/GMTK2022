@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class AcidPool : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    BoxCollider _boxCollider;
+
+    private void Awake()
     {
-        
+        _boxCollider = GetComponent<BoxCollider>();
+        _boxCollider.isTrigger = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerStay(Collider other)
     {
-        
+        //TODO: Deal Damage
     }
 }
