@@ -10,8 +10,11 @@ public class ImpactEffects : MonoBehaviour
     /// Creates Overlap sphere at desired location, damaging enemies
     /// </summary>
     /// <param name="position">Location where overlap shpere will spawn</param>
+    /// <param name="damage">Damage of explosion</param>
+    /// <param name="force">Force of knockback</param>
     /// <param name="radius">Radius of overlap shpere</param>
     /// <param name="target">Layer mask targeted</param>
+    /// <param name="doesFreeze">Freezes instead of dealing damage and knockback</param>
     public void AoE(in Vector3 position, in float damage, in float force, in float radius, in LayerMask target, in bool doesFreeze)
     {
         Collider[] hitColliders = Physics.OverlapSphere(position, radius, target);
