@@ -24,6 +24,7 @@ public class Health : MonoBehaviour
     [SerializeField] private Team myTeam = 0;
 
     public float HealthPercentage => _currentHealth / _maxHealth;
+    public Team CurrentTeam => myTeam;
 
 
     /// <summary>
