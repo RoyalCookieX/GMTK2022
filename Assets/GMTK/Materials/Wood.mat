@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Floor
+  m_Name: Wood
   m_Shader: {fileID: -6465566751694194690, guid: 020ee225745d1cc4da4264c5faf1ee8a,
     type: 3}
   m_ShaderKeywords: 
@@ -23,6 +23,10 @@ Material:
     m_TexEnvs:
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 6d29eca9e2f321c4fb386d8620f0a3a7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopTexture:
+        m_Texture: {fileID: 2800000, guid: c5730a21f206f0d4d81a4f480c2b745f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -44,18 +48,21 @@ Material:
     - _CastShadows: 1
     - _Cull: 2
     - _DstBlend: 0
-    - _NoiseScale: 0.1
+    - _NoiseScale: 1.7
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ReceiveShadows: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _TexturePower: 0.3
+    - _TexturePower: 1
+    - _TextureScale: 1.8
+    - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _BaseColor: {r: 0.6226415, g: 0.47029606, b: 0.30838376, a: 1}
-    - _FrontColor: {r: 1, g: 0.8283106, b: 0.5235849, a: 1}
+    - _BaseColor: {r: 0.6509434, g: 0.48202145, b: 0.25485048, a: 1}
+    - _FrontColor: {r: 0.2735849, g: 0.2087492, b: 0.09420612, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1003933215591390870
 MonoBehaviour:

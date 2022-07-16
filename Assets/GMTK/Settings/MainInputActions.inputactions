@@ -100,11 +100,33 @@
                 },
                 {
                     "name": "",
+                    "id": "079cc708-5970-4f3d-a94f-ad522e650a13",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7388f70e-0a7b-4f80-8ebc-063af81cce2a",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "39fc9a4b-b489-4a2e-be6b-65523424eccf",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -122,11 +144,44 @@
                 },
                 {
                     "name": "",
+                    "id": "fdfa5c7c-ff07-4fb1-aa8d-a05199e08de9",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b452d294-58fb-4cc5-a09e-57e050eb8bfe",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "cab2f1a7-75ad-483e-89f6-9391f16dd621",
                     "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cdc5c7b8-85d2-47e0-9f82-2c6b37378cbd",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
