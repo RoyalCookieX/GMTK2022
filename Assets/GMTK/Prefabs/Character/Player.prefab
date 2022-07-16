@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 2205999800468943522}
   m_Father: {fileID: 101302631930111081}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2147160107560881814
 MonoBehaviour:
@@ -78,7 +78,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7780678, y: 1}
+    m_SensorSize: {x: 1.7328244, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -87,52 +87,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 2205999800468943522}
---- !u!1 &7542901059582825097
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 446443435560455091}
-  - component: {fileID: 4713016828938889792}
-  m_Layer: 0
-  m_Name: Mesh
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &446443435560455091
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542901059582825097}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 101302631930111081}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &4713016828938889792
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542901059582825097}
-  m_Material: {fileID: 13400000, guid: 5498a9482c5103b42974518341cfaad3, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8781399979702127740
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,6 +100,7 @@ GameObject:
   - component: {fileID: 2421781357910290737}
   - component: {fileID: 1057086806374202169}
   - component: {fileID: 2036882207504347706}
+  - component: {fileID: 7204559251520966503}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -165,7 +120,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 446443435560455091}
   - {fileID: 1120197508703590638}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -182,12 +136,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 280c18bd17fd6d74ab7fb915ae91b83b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onYawPitch:
+  _onMovement:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2421781357910290737}
+        m_TargetAssemblyTypeName: CharacterMovement, GMTK
+        m_MethodName: SetMoveDirection
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onLook:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2421781357910290737}
+        m_TargetAssemblyTypeName: CharacterMovement, GMTK
+        m_MethodName: AddLookDelta
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2147160107560881814}
+        m_TargetAssemblyTypeName: PlayerCamera, GMTK
+        m_MethodName: AddLookDelta
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onJump:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2421781357910290737}
+        m_TargetAssemblyTypeName: CharacterMovement, GMTK
+        m_MethodName: SetJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onShoot:
     m_PersistentCalls:
       m_Calls: []
-  _characterMovement: {fileID: 2421781357910290737}
-  _playerCamera: {fileID: 2147160107560881814}
-  _rotationSpeed: {x: 20, y: 10}
+  _pitchYawSpeed: {x: 15, y: 15}
 --- !u!114 &2421781357910290737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +219,7 @@ MonoBehaviour:
     m_Bits: 8
   _groundCheckBegin: {x: 0, y: 0.5, z: 0}
   _groundCheckEnd: {x: 0, y: 0.2, z: 0}
-  _groundCheckRadius: 0.3
+  _groundCheckRadius: 0.4
 --- !u!114 &1057086806374202169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +267,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!136 &7204559251520966503
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8781399979702127740}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &9033196249227817485
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2205999800468943522}
   - component: {fileID: 7974289375330129709}
-  - component: {fileID: 7351589455615063348}
+  - component: {fileID: 7372675544874752381}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -303,7 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7351589455615063348
+--- !u!114 &7372675544874752381
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -324,7 +347,7 @@ MonoBehaviour:
     m_DecelTime: 0.1
     m_InputAxisName: 
     m_InputAxisValue: 0
-    m_InvertInput: 0
+    m_InvertInput: 1
     m_MinValue: -70
     m_MaxValue: 70
     m_Wrap: 0
