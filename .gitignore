@@ -62,6 +62,16 @@ sysinfo.txt
 crashlytics-build.properties
 
 # FMOD
+Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
+Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset.meta
+Assets/Plugins/FMOD/Cache/fmod_register_static_plugins.cpp
+Assets/Plugins/FMOD/Cache/fmod_register_static_plugins.cpp.meta
+fmod.log
+fmod_editor.log
+
+# FMOD Lib
+/[Aa]ssets/Plugins/FMOD/platforms/**/lib/
+/[Aa]ssets/Plugins/FMOD/platforms/**/lib.meta
 !/[Aa]ssets/Plugins/FMOD/**/*.dll
 
 # Don't ignore images and gizmos used by FMOD in the Unity Editor
