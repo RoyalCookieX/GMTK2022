@@ -23,7 +23,7 @@ public class GravityWell : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.layer != _targetableMask) return;
+        if (_targetableMask.Includes(other.gameObject.layer)) return;
         Vector3 currentPosition = other.transform.position;
         _targetPosition = new Vector3(_targetPosition.x, currentPosition.y, _targetPosition.z);
         other.gameObject.transform.position = Vector3.MoveTowards(currentPosition, _targetPosition, _pullSpeed * Time.deltaTime);
