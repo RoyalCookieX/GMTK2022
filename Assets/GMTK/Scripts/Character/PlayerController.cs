@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnJump(InputValue value)
     {
-        Debug.Log("Jump!");
+        bool isPressed = value.isPressed;
+        _characterMovement.SetJump(isPressed);
     }
 
     private void OnShoot(InputValue value)
