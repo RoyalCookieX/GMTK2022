@@ -14,10 +14,10 @@ public class PlayerCamera : MonoBehaviour
 
     private CinemachinePOV _pov;
 
-    public void AddPitch(float pitch)
+    public void AddLookDelta(Vector2 lookDelta)
     {
         float invert = _invert ? -1f : 1f;
-        SetPitch(Pitch + invert * (pitch * Time.deltaTime));
+        SetPitch(Pitch + invert * (lookDelta.y * Time.deltaTime));
     }
 
     private void SetPitch(float pitch)

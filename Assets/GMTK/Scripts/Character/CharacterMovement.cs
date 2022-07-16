@@ -20,15 +20,14 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private Vector3 _groundCheckEnd = new Vector3(0f, -1f, 0f);
     [SerializeField] private float _groundCheckRadius = 0.2f;
 
-    public void SetMoveDirection(Vector2 localDirection)
+    public void SetMoveDirection(Vector2 moveDirection)
     {
-        MoveDirection = new Vector3(localDirection.x, 0f, localDirection.y) * _moveSpeed;
+        MoveDirection = new Vector3(moveDirection.x, 0f, moveDirection.y) * _moveSpeed;
     }
 
-    public void AddYaw(float yaw)
+    public void AddLookDelta(Vector2 lookDelta)
     {
-        Yaw += yaw * Time.deltaTime;
-        _rigidbody.MoveRotation(Quaternion.Euler(Vector3.up * Yaw));
+        Yaw += lookDelta.x * Time.deltaTime;
     }
 
     public void SetJump(bool jump)
@@ -50,14 +49,15 @@ public class CharacterMovement : MonoBehaviour
         Ray ray = new Ray(begin, displacement.normalized);
         IsGrounded = Physics.SphereCast(ray, _groundCheckRadius, displacement.magnitude, _groundMask);
 
-        // set movement
+        // set movement & look
         Vector3 moveDirection = MoveDirection;
         if (!IsGrounded)
             moveDirection *= _airControl;
         _rigidbody.AddRelativeForce(moveDirection, ForceMode.Force);
+        _rigidbody.MoveRotation(Quaternion.Euler(Vector3.up * Yaw));
 
         // jump
-        if(IsJumping && IsGrounded)
+        if (IsJumping && IsGrounded)
         {
             // zero y velocity
             _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z);
