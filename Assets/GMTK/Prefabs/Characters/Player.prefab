@@ -146,7 +146,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1744187, y: 1}
+    m_SensorSize: {x: 2.6899226, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -333,7 +333,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 2036882207504347706}
-  _navMeshAgent: {fileID: 0}
   _maxVelocity: 6
   _moveSpeed: 30
   _yawSpeed: 20

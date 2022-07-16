@@ -10,7 +10,6 @@ public class CharacterMovement : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private NavMeshAgent _navMeshAgent;
 
     [Header("Properties")]
     [SerializeField] private float _maxVelocity = 6f;
