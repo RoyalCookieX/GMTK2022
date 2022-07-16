@@ -1,3 +1,6 @@
+//Author: Matheus Vilano
+//Co-Author: Koda Villela
+
 using UnityEngine;
 
 /// <summary>
