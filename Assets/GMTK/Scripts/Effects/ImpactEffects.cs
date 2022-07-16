@@ -12,11 +12,15 @@ public class ImpactEffects : MonoBehaviour
     /// <param name="position">Location where overlap shpere will spawn</param>
     /// <param name="radius">Radius of overlap shpere</param>
     /// <param name="target">Layer mask targeted</param>
-    public void AoE(in Vector3 position, in float radius, in LayerMask target)
+    public void AoE(in Vector3 position, in float radius, in LayerMask target, in bool doesFreeze)
     {
         Collider[] hitColliders = Physics.OverlapSphere(position, radius, target);
         foreach (var other in hitColliders)
         {
+            if (doesFreeze)
+            {
+                //TODO : Freeze Enemy Movement
+            }
             //TODO: Do Damage
         }
     }
