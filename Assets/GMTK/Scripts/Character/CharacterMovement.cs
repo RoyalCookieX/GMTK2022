@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -14,7 +13,6 @@ public class CharacterMovement : MonoBehaviour
     [Header("Properties")]
     [SerializeField] private float _maxVelocity = 6f;
     [SerializeField] private float _moveSpeed = 30f;
-    [SerializeField] private float _yawSpeed = 30f;
     [SerializeField] private float _jumpStrength = 5f;
     [SerializeField, Range(0.01f, 1f)] private float _airControl = 0.35f;
     [SerializeField] private LayerMask _groundMask;
@@ -29,7 +27,8 @@ public class CharacterMovement : MonoBehaviour
 
     public void AddYaw(float yaw)
     {
-        Yaw += yaw * _yawSpeed * Time.deltaTime;
+        Yaw += yaw * Time.deltaTime;
+        _rigidbody.MoveRotation(Quaternion.Euler(Vector3.up * Yaw));
     }
 
     public void SetJump(bool jump)
@@ -51,12 +50,11 @@ public class CharacterMovement : MonoBehaviour
         Ray ray = new Ray(begin, displacement.normalized);
         IsGrounded = Physics.SphereCast(ray, _groundCheckRadius, displacement.magnitude, _groundMask);
 
-        // set movement and look
+        // set movement
         Vector3 moveDirection = MoveDirection;
         if (!IsGrounded)
             moveDirection *= _airControl;
         _rigidbody.AddRelativeForce(moveDirection, ForceMode.Force);
-        _rigidbody.MoveRotation(Quaternion.Euler(Vector3.up * Yaw));
 
         // jump
         if(IsJumping && IsGrounded)
