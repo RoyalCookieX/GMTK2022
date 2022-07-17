@@ -28,28 +28,29 @@ public class Weapon : MonoBehaviour
     private float _range;
     private float _radius;
     private float _knockback;
+    private float _inaccuracy;
     
     private void OnShoot()
     {
         switch (_selectedWeapon)
         {
             case 0:
-                Projectile.RaycastShot(out _hit, team, _barrel.position, _target, _radius, _range, _layerMask, _damage, _knockback);
+                Projectile.RaycastShot(out _hit, team, _barrel.position, _target, _radius, _range, _layerMask, _damage, _knockback, _inaccuracy);
                 break;
             case 1:
                 for (int i = 0; i < _numberOfShots; i++)
                 {
-                    Projectile.RaycastShot(out _hit, team, _barrel.position, _target, _radius, _range, _layerMask, _damage, _knockback);
+                    Projectile.RaycastShot(out _hit, team, _barrel.position, _target, _radius, _range, _layerMask, _damage, _knockback, _inaccuracy);
                 }
                 break;
             case 2:
-                Projectile.RocketFire(team, _barrel.position, _target, _radius, _range, _layerMask, _damage, _knockback);
+                Projectile.RocketFire(team, _barrel.position, _target, _radius, _range, _layerMask, _damage, _knockback, _inaccuracy);
                 break;
             case 3:
                 Projectile.RaycastPierce(team, _barrel.position, _target, _radius, _range, _layerMask, _wallMask, _damage, _knockback);
                 break;
             case 4:
-                Projectile.TeleportShot(ref _player, team, _barrel.position, _target, _radius, _range, _layerMask);
+                Projectile.TeleportShot(ref _player, team, _barrel.position, _target, _radius, _range, _layerMask, _inaccuracy);
                 break;
             case 5:
                 Projectile.RaycastPierce(team, _barrel.position, _target, _radius, _range, _layerMask, _wallMask, _damage, _knockback);
@@ -58,16 +59,16 @@ public class Weapon : MonoBehaviour
                 Projectile.Poison(team, _barrel.position, _target, _radius, _range, _layerMask, _damage);
                 break;
             case 7:
-                Projectile.Freeze(team, _barrel.position, _target, _radius, _range, _layerMask);
+                Projectile.Freeze(team, _barrel.position, _target, _radius, _range, _layerMask, _inaccuracy );
                 break;
             case 8:
-                Projectile.InstantiateShot(ref _acidPool, team, _barrel.position, _target, _radius, _range, _layerMask);
+                Projectile.InstantiateShot(ref _acidPool, team, _barrel.position, _target, _radius, _range, _layerMask, _inaccuracy);
                 break;
             case 9:
-                Projectile.InstantiateShot(ref _gravityWell, team, _barrel.position, _target, _radius, _range, _layerMask);
+                Projectile.InstantiateShot(ref _gravityWell, team, _barrel.position, _target, _radius, _range, _layerMask, _inaccuracy);
                 break;
             case 10:
-                if (Projectile.RaycastShot(out _hit, team, _barrel.position, _target, _radius, _range, _layerMask, _damage, _knockback))
+                if (Projectile.RaycastShot(out _hit, team, _barrel.position, _target, _radius, _range, _layerMask, _damage, _knockback, _inaccuracy))
                 {
                     _currentAmmo += 1;
                 }

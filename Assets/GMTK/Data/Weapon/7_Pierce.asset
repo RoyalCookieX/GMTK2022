@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: 7_Pierce
   m_EditorClassIdentifier: 
   _maxAmmo: 7
-  _cooldown: 0
-  _damage: 0
-  _range: 0
-  _radius: 0
+  _cooldown: 0.3
+  _damage: 40
+  _range: 50
+  _radius: 0.2
   _knockback: 0
+  _inaccuracy: 0

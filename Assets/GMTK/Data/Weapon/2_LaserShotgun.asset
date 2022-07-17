@@ -15,6 +15,7 @@ MonoBehaviour:
   _maxAmmo: 5
   _cooldown: 0.5
   _damage: 10
-  _range: 0
+  _range: 10
   _radius: 0.1
   _knockback: 0
+  _inaccuracy: 30

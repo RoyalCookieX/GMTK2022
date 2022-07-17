@@ -41,7 +41,8 @@ public class ImpactEffects : MonoBehaviour
     /// <param name="target">Teleported Object</param>
     public static void Teleport(in Vector3 position, ref GameObject target)
     {
-        target.transform.position = position;
+        Vector3 newPosition = new(position.x, 0f, position.z);
+        target.transform.position = newPosition;
     }
 
     /// <summary>
@@ -51,6 +52,7 @@ public class ImpactEffects : MonoBehaviour
     /// <param name="projectile">Projectile to spawn</param>
     public static void Spawn(in Vector3 position, ref GameObject projectile)
     {
+        Vector3 newPosition = new(position.x, 0f, position.z);
         //TODO: Instantiate
     }
 }

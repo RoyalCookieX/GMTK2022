@@ -28,4 +28,8 @@ public class WeaponData : ScriptableObject
     [SerializeField]
     private float _knockback;
     public float Knockback => _knockback;
+
+    [SerializeField]
+    private float _inaccuracy;
+    public float Inaccuracy => _inaccuracy;
 }

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: 6_PoisonDart
   m_EditorClassIdentifier: 
   _maxAmmo: 1
-  _cooldown: 0
+  _cooldown: 1
   _damage: 3
-  _range: 0
-  _radius: 0
+  _range: 50
+  _radius: 0.1
   _knockback: 0
+  _inaccuracy: 0

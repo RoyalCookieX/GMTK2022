@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: 9_Acid
   m_EditorClassIdentifier: 
   _maxAmmo: 3
-  _cooldown: 0
+  _cooldown: 0.7
   _damage: 0
-  _range: 0
-  _radius: 0
+  _range: 15
+  _radius: 3
   _knockback: 0
+  _inaccuracy: 3
