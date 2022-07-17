@@ -26,12 +26,11 @@ public class ImpactEffects : MonoBehaviour
                 return;
             }
 
-            if (TryGetComponent(out Health health))
+            Knockback.ExplosionKnockback(gameObject, position, force, radius);
+            if (other.TryGetComponent(out Health health))
             {
                 health.ChangeHealth(damage);
             }
-
-            Knockback.ExplosionKnockback(gameObject, position, force, radius);
         }
     }
 

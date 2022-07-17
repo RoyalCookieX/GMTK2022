@@ -17,6 +17,8 @@ public class Knockback : MonoBehaviour
     /// <param name="mode">Force mode</param>
     public static void ExplosionKnockback(in GameObject target, in Vector3 position, in float force, in float radius, in float upwardsForce = 0f, in ForceMode mode = ForceMode.Force)
     {
+        if (target is null) return;
+
         if (target.TryGetComponent(out Rigidbody rb))
         {
             rb.AddExplosionForce(force, position, radius, upwardsForce, mode);
@@ -31,6 +33,8 @@ public class Knockback : MonoBehaviour
     /// <param name="force">Force of Translation</param>
     public static void TranslateKnockback(in GameObject target, in Vector3 direction, in float force)
     {
+        if (target is null) return;
+
         target.transform.Translate(direction * force);
     }
 }

@@ -18,7 +18,7 @@ public class AcidPool : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (TryGetComponent(out Health health))
+        if (other.TryGetComponent(out Health health))
         {
             health.ChangeHealth(_damage);
         }
