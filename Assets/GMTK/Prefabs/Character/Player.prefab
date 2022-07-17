@@ -46,9 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865844153e717464795c2ff82d62112c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _virtualCamera: {fileID: 386683746925412930}
-  _pitchRange: {x: -70, y: 70}
-  _invert: 1
 --- !u!114 &386683746925412930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +75,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7328244, y: 1}
+    m_SensorSize: {x: 1.6005089, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -99,6 +96,7 @@ GameObject:
   - component: {fileID: 4075983844510851457}
   - component: {fileID: 2421781357910290737}
   - component: {fileID: 1057086806374202169}
+  - component: {fileID: 7049978328461999565}
   - component: {fileID: 2036882207504347706}
   - component: {fileID: 7204559251520966503}
   m_Layer: 0
@@ -136,67 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 280c18bd17fd6d74ab7fb915ae91b83b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onMovement:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2421781357910290737}
-        m_TargetAssemblyTypeName: CharacterMovement, GMTK
-        m_MethodName: SetMoveDirection
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onLook:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2421781357910290737}
-        m_TargetAssemblyTypeName: CharacterMovement, GMTK
-        m_MethodName: AddLookDelta
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2147160107560881814}
-        m_TargetAssemblyTypeName: PlayerCamera, GMTK
-        m_MethodName: AddLookDelta
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onJump:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2421781357910290737}
-        m_TargetAssemblyTypeName: CharacterMovement, GMTK
-        m_MethodName: SetJump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onShoot:
-    m_PersistentCalls:
-      m_Calls: []
-  _pitchYawSpeed: {x: 15, y: 15}
+  _characterMovement: {fileID: 2421781357910290737}
+  _playerCamera: {fileID: 2147160107560881814}
+  _yawMultiplier: 0.5
+  _pitchMultiplier: -0.5
+  _pitchRange: {x: -70, y: 70}
 --- !u!114 &2421781357910290737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,15 +152,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 2036882207504347706}
-  _maxVelocity: 6
-  _moveSpeed: 20
-  _jumpStrength: 5
+  _navMeshAgent: {fileID: 7049978328461999565}
+  _moveSpeed: 10
+  _acceleration: 5
+  _jumpHeight: 5
+  _jumpGravity: 10
   _airControl: 0.1
   _groundMask:
     serializedVersion: 2
     m_Bits: 8
-  _groundCheckBegin: {x: 0, y: 0.5, z: 0}
-  _groundCheckEnd: {x: 0, y: 0.2, z: 0}
+  _groundCheckStart: {x: 0, y: 0.5, z: 0}
+  _groundCheckEnd: {x: 0, y: 0.3, z: 0}
   _groundCheckRadius: 0.4
 --- !u!114 &1057086806374202169
 MonoBehaviour:
@@ -251,6 +195,28 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!195 &7049978328461999565
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8781399979702127740}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!54 &2036882207504347706
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -291,7 +257,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2205999800468943522}
   - component: {fileID: 7974289375330129709}
-  - component: {fileID: 7372675544874752381}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -326,65 +291,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7372675544874752381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9033196249227817485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c9beda531928fc40968802117a5d256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RecenterTarget: 0
-  m_VerticalAxis:
-    Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 300
-    m_AccelTime: 0.1
-    m_DecelTime: 0.1
-    m_InputAxisName: 
-    m_InputAxisValue: 0
-    m_InvertInput: 1
-    m_MinValue: -70
-    m_MaxValue: 70
-    m_Wrap: 0
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 1
-      m_RecenteringTime: 2
-      m_LegacyHeadingDefinition: -1
-      m_LegacyVelocityFilterStrength: -1
-  m_VerticalRecentering:
-    m_enabled: 0
-    m_WaitTime: 1
-    m_RecenteringTime: 2
-    m_LegacyHeadingDefinition: -1
-    m_LegacyVelocityFilterStrength: -1
-  m_HorizontalAxis:
-    Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 300
-    m_AccelTime: 0.1
-    m_DecelTime: 0.1
-    m_InputAxisName: 
-    m_InputAxisValue: 0
-    m_InvertInput: 0
-    m_MinValue: -180
-    m_MaxValue: 180
-    m_Wrap: 1
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 1
-      m_RecenteringTime: 2
-      m_LegacyHeadingDefinition: -1
-      m_LegacyVelocityFilterStrength: -1
-  m_HorizontalRecentering:
-    m_enabled: 0
-    m_WaitTime: 1
-    m_RecenteringTime: 2
-    m_LegacyHeadingDefinition: -1
-    m_LegacyVelocityFilterStrength: -1
-  m_ApplyBeforeBody: 0
