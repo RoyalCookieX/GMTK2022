@@ -1,3 +1,5 @@
+//Made by Koda Villela
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +8,7 @@ using UnityEngine;
 public class AcidPool : MonoBehaviour
 {
     BoxCollider _boxCollider;
+    [SerializeField] float _damage = .1f;
 
     private void Awake()
     {
@@ -15,6 +18,9 @@ public class AcidPool : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        //TODO: Deal Damage
+        if (other.TryGetComponent(out Health health))
+        {
+            health.ChangeHealth(_damage);
+        }
     }
 }

@@ -26,9 +26,12 @@ public class Laser : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.SphereCast(origin, radius, direction, out hit, range, mask))
+        if (!Physics.SphereCast(origin, radius, direction, out hit, range, mask)) return;
+
+        Knockback.TranslateKnockback(hit.collider.gameObject, direction, knockback);
+        if (hit.collider.TryGetComponent(out Health health))
         {
-            //TODO: Try get component and add damage
+            health.ChangeHealth(damage);
         }
     }
 
@@ -78,7 +81,14 @@ public class Laser : MonoBehaviour
 
         Physics.SphereCastNonAlloc(ray, radius, _hits, range, mask);
 
-        //TODO: Try get component and add damage
+        foreach(RaycastHit hit in _hits)
+        {
+            Knockback.TranslateKnockback(hit.collider.gameObject, direction, knockback);
+            if (hit.collider.TryGetComponent(out Health health))
+            {
+                health.ChangeHealth(damage);
+            }
+        }
 
         Array.Clear(_hits, 0, _hits.Length);
     }
