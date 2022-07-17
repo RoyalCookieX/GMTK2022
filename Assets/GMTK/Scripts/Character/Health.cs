@@ -19,6 +19,9 @@ public class Health : MonoBehaviour
     [SerializeField] private UnityEvent _onHealed;
     [SerializeField] private UnityEvent _onDeath;
 
+    [SerializeField] private float _damageTick;
+    private Coroutine _overTimeCoroutine;
+
     [SerializeField] private float _maxHealth = 100f;
     [SerializeField] private float _currentHealth = 70f;
     [SerializeField] private Team myTeam = 0;
@@ -56,5 +59,25 @@ public class Health : MonoBehaviour
 
             _onDeath.Invoke();
         }
+    }
+
+    public void ChangeHealthOverTime(float value)
+    {
+        if (_overTimeCoroutine is not null) return;
+
+        _overTimeCoroutine = StartCoroutine(OverTime(value));
+
+    }
+
+    private IEnumerator OverTime(float value)
+    {
+        yield return null;
+
+        while (_currentHealth > 0)
+        {
+            ChangeHealth(value);
+            yield return new WaitForSeconds(_damageTick);
+        }
+        
     }
 }
