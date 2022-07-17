@@ -4,8 +4,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public Quaternion YawPitchRotation => Quaternion.Euler(_yawPitch.y, _yawPitch.x, 0f);
-
     [Header("Components")]
     [SerializeField] private CharacterMovement _characterMovement;
     [SerializeField] private PlayerCamera _playerCamera;
