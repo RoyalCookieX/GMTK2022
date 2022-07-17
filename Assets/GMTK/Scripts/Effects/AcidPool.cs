@@ -11,11 +11,13 @@ public class AcidPool : MonoBehaviour
 
     BoxCollider _boxCollider;
     [SerializeField] float _damage = .1f;
+    [SerializeField] float _life = 2f;
 
     private void Awake()
     {
         _boxCollider = GetComponent<BoxCollider>();
         _boxCollider.isTrigger = true;
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -25,4 +27,12 @@ public class AcidPool : MonoBehaviour
             health.Damage(Team, _damage);
         }
     }
+
+    private IEnumerator DestroySelf()
+    {
+        yield return new WaitForSeconds(_life);
+        //TODO: Destroy self
+    }
+
+
 }

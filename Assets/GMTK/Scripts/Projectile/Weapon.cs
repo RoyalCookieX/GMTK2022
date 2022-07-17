@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private LayerMask _wallMask;
     [SerializeField] private Transform _barrel;
     private Vector3 _target;
-    private int _selectedWeapon;
+    private int _selectedWeapon = 0;
 
     [SerializeField] private GameObject _gravityWell;
     [SerializeField] private GameObject _acidPool;
