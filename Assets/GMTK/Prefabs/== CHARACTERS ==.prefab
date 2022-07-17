@@ -52,7 +52,7 @@ PrefabInstance:
     - target: {fileID: 101302631930111081, guid: aa64dcfad33163b419a3fcfd61f72f5e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: -0.84
       objectReference: {fileID: 0}
     - target: {fileID: 101302631930111081, guid: aa64dcfad33163b419a3fcfd61f72f5e,
         type: 3}
@@ -97,7 +97,7 @@ PrefabInstance:
     - target: {fileID: 386683746925412930, guid: aa64dcfad33163b419a3fcfd61f72f5e,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7781818
+      value: 1.7794677
       objectReference: {fileID: 0}
     - target: {fileID: 8781399979702127740, guid: aa64dcfad33163b419a3fcfd61f72f5e,
         type: 3}
