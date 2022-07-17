@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc1985c4f06cad449a29d1ce7c0dad6, type: 3}
   m_Name: 2_LaserShotgun
   m_EditorClassIdentifier: 
-  _maxAmmo: 0
-  _currentAmmo: 0
-  _cooldown: 0
-  _damage: 0
+  _maxAmmo: 5
+  _cooldown: 0.5
+  _damage: 10
   _range: 0
-  _radius: 0
+  _radius: 0.1
   _knockback: 0

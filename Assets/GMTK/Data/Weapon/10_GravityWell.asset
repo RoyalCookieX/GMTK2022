@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc1985c4f06cad449a29d1ce7c0dad6, type: 3}
   m_Name: 10_GravityWell
   m_EditorClassIdentifier: 
-  _maxAmmo: 0
-  _currentAmmo: 0
+  _maxAmmo: 1
   _cooldown: 0
   _damage: 0
   _range: 0
