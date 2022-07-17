@@ -5,10 +5,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Laser : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
-    private RaycastHit[] _hits = new RaycastHit[64];
-
     /// <summary>
     /// Fires a raycast that damages first hit
     /// </summary>
@@ -19,7 +17,7 @@ public class Laser : MonoBehaviour
     /// <param name="mask">Layer to be targeted</param>
     /// <param name="damage">Damage caused by shot</param>
     /// <param name="knockback">Knockback caused by shot</param>
-    public void LaserFire(in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage, in float knockback)
+    public static void RaycastShot(in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage, in float knockback)
     {
         Vector3 direction = origin - target;
         direction = direction.normalized;
@@ -46,7 +44,7 @@ public class Laser : MonoBehaviour
     /// <param name="wallMask">Layer of walls and ground</param>
     /// <param name="damage">Damage caused by shot</param>
     /// <param name="knockback">Knockback caused by shot</param>
-    public void PierceFire(in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in LayerMask wallMask, in float damage, in float knockback)
+    public static void RaycastPierce(in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in LayerMask wallMask, in float damage, in float knockback)
     {
         Vector3 direction = origin - target;
         direction = direction.normalized;
@@ -56,10 +54,10 @@ public class Laser : MonoBehaviour
         if (Physics.SphereCast(origin, radius, direction, out hit, range, wallMask))
         {
             float newRange = hit.distance;
-            PierceWallFire(origin, target, radius, newRange, mask, damage, knockback);
+            RaycastPierceWall(origin, target, radius, newRange, mask, damage, knockback);
             return;
         }
-        PierceWallFire(origin, target, radius, range, mask, damage, knockback);
+        RaycastPierceWall(origin, target, radius, range, mask, damage, knockback);
     }
 
     /// <summary>
@@ -72,16 +70,16 @@ public class Laser : MonoBehaviour
     /// <param name="mask">Layer to be targeted</param>
     /// <param name="damage">Damage caused by shot</param>
     /// <param name="knockback">Knockback caused by shot</param>
-    public void PierceWallFire(in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage, in float knockback)
+    public static void RaycastPierceWall(in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage, in float knockback)
     {
         Vector3 direction = origin - target;
         direction = direction.normalized;
 
         Ray ray = new Ray(origin, direction);
 
-        Physics.SphereCastNonAlloc(ray, radius, _hits, range, mask);
+        RaycastHit[] hits = Physics.SphereCastAll(ray, radius, range, mask);
 
-        foreach(RaycastHit hit in _hits)
+        foreach(RaycastHit hit in hits)
         {
             Knockback.TranslateKnockback(hit.collider.gameObject, direction, knockback);
             if (hit.collider.TryGetComponent(out Health health))
@@ -89,7 +87,10 @@ public class Laser : MonoBehaviour
                 health.ChangeHealth(damage);
             }
         }
+    }
 
-        Array.Clear(_hits, 0, _hits.Length);
+    public static void RocketFire(in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage, in float knockback)
+    {
+
     }
 }
