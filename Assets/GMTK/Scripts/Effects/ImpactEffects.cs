@@ -15,7 +15,7 @@ public class ImpactEffects : MonoBehaviour
     /// <param name="radius">Radius of overlap shpere</param>
     /// <param name="target">Layer mask targeted</param>
     /// <param name="doesFreeze">Freezes instead of dealing damage and knockback</param>
-    public static void AoE(in Vector3 position, in float damage, in float force, in float radius, in LayerMask target, in bool doesFreeze)
+    public static void AoE(in Team team, in Vector3 position, in float damage, in float force, in float radius, in LayerMask target, in bool doesFreeze)
     {
         Collider[] hitColliders = Physics.OverlapSphere(position, radius, target);
         foreach (var other in hitColliders)
@@ -27,9 +27,9 @@ public class ImpactEffects : MonoBehaviour
             }
 
             Knockback.ExplosionKnockback(other.gameObject, position, force, radius);
-            if (other.TryGetComponent(out Health health))
+            if (other.TryGetComponent(out CharacterHealth health))
             {
-                health.ChangeHealth(damage);
+                health.Damage(team, damage);
             }
         }
     }

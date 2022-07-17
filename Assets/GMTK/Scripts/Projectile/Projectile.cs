@@ -1,15 +1,13 @@
 //Made by Koda Villela
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class Projectile : MonoBehaviour
+public static class Projectile
 {
     /// <summary>
     /// Fires a raycast that damages first hit
     /// </summary>
+    /// <param name="team">Team that instagated damage</param>
     /// <param name="origin">Starting position of ray</param>
     /// <param name="target">Target of ray</param>
     /// <param name="radius">Thickness of ray</param>
@@ -17,7 +15,7 @@ public class Projectile : MonoBehaviour
     /// <param name="mask">Layer to be targeted</param>
     /// <param name="damage">Damage caused by shot</param>
     /// <param name="knockback">Knockback caused by shot</param>
-    public static bool RaycastShot(out RaycastHit hit,in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage, in float knockback)
+    public static bool RaycastShot(out RaycastHit hit, Team team, in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage, in float knockback)
     {
         Vector3 direction = origin - target;
         direction = direction.normalized;
@@ -27,9 +25,9 @@ public class Projectile : MonoBehaviour
         if (!Physics.SphereCast(origin, radius, direction, out hit, range, mask)) return false;
 
         Knockback.TranslateKnockback(hit.collider.gameObject, direction, knockback);
-        if (hit.collider.TryGetComponent(out Health health))
+        if (hit.collider.TryGetComponent(out CharacterHealth health))
         {
-            health.ChangeHealth(damage);
+            health.Damage(team, damage);
         }
 
         return true;
@@ -38,6 +36,7 @@ public class Projectile : MonoBehaviour
     /// <summary>
     /// Fires a raycast that goes through everything except walls, damaging targets
     /// </summary>
+    /// <param name="team">Team that instagated damage</param>
     /// <param name="origin">Starting position of ray</param>
     /// <param name="target">Target of ray</param>
     /// <param name="radius">Thickness of ray</param>
@@ -46,7 +45,7 @@ public class Projectile : MonoBehaviour
     /// <param name="wallMask">Layer of walls and ground</param>
     /// <param name="damage">Damage caused by shot</param>
     /// <param name="knockback">Knockback caused by shot</param>
-    public static void RaycastPierce(in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in LayerMask wallMask, in float damage, in float knockback)
+    public static void RaycastPierce(in Team team, in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in LayerMask wallMask, in float damage, in float knockback)
     {
         Vector3 direction = origin - target;
         direction = direction.normalized;
@@ -56,15 +55,16 @@ public class Projectile : MonoBehaviour
         if (Physics.SphereCast(origin, radius, direction, out hit, range, wallMask))
         {
             float newRange = hit.distance;
-            RaycastPierceWall(origin, target, radius, newRange, mask, damage, knockback);
+            RaycastPierceWall(team, origin, target, radius, newRange, mask, damage, knockback);
             return;
         }
-        RaycastPierceWall(origin, target, radius, range, mask, damage, knockback);
+        RaycastPierceWall(team, origin, target, radius, range, mask, damage, knockback);
     }
 
     /// <summary>
     /// Fires a raycast that goes through everything damaging targets
     /// </summary>
+    /// <param name="team">Team that instagated damage</param>
     /// <param name="origin">Starting position of ray</param>
     /// <param name="target">Target of ray</param>
     /// <param name="radius">Thickness of ray</param>
@@ -72,7 +72,7 @@ public class Projectile : MonoBehaviour
     /// <param name="mask">Layer to be targeted</param>
     /// <param name="damage">Damage caused by shot</param>
     /// <param name="knockback">Knockback caused by shot</param>
-    public static void RaycastPierceWall(in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage, in float knockback)
+    public static void RaycastPierceWall(in Team team, in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage, in float knockback)
     {
         Vector3 direction = origin - target;
         direction = direction.normalized;
@@ -84,9 +84,9 @@ public class Projectile : MonoBehaviour
         foreach(RaycastHit hit in hits)
         {
             Knockback.TranslateKnockback(hit.collider.gameObject, direction, knockback);
-            if (hit.collider.TryGetComponent(out Health health))
+            if (hit.collider.TryGetComponent(out CharacterHealth health))
             {
-                health.ChangeHealth(damage);
+                health.Damage(team, damage);
             }
         }
     }
@@ -94,6 +94,7 @@ public class Projectile : MonoBehaviour
     /// <summary>
     /// Fires a Raycast that explodes at the end.
     /// </summary>
+    /// <param name="team">Team that instagated damage</param>
     /// <param name="origin">Starting position of ray</param>
     /// <param name="target">Target of ray</param>
     /// <param name="radius">Thickness of ray</param>
@@ -101,19 +102,20 @@ public class Projectile : MonoBehaviour
     /// <param name="mask">Layer to be targeted</param>
     /// <param name="damage">Damage caused by shot</param>
     /// <param name="knockback">Knockback caused by shot</param>
-    public static void RocketFire(in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage, in float knockback)
+    public static void RocketFire(Team team, in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage, in float knockback)
     {
-        if(RaycastShot(out RaycastHit hit, origin, target, radius, range, mask, damage, knockback))
+        if(RaycastShot(out RaycastHit hit, team, origin, target, radius, range, mask, damage, knockback))
         {
-            ImpactEffects.AoE(hit.transform.position, damage, knockback, radius, mask, false);
+            ImpactEffects.AoE(team, hit.transform.position, damage, knockback, radius, mask, false);
             return;
         }
-        ImpactEffects.AoE(target, damage, knockback, radius, mask, false);
+        ImpactEffects.AoE(team, target, damage, knockback, radius, mask, false);
     }
 
     /// <summary>
     /// Fires a Raycast that explodes at the end freezing enemies
     /// </summary>
+    /// <param name="team">Team that instagated damage</param>
     /// <param name="origin">Starting position of ray</param>
     /// <param name="target">Target of ray</param>
     /// <param name="radius">Thickness of ray</param>
@@ -121,14 +123,14 @@ public class Projectile : MonoBehaviour
     /// <param name="mask">Layer to be targeted</param>
     /// <param name="damage">Damage caused by shot</param>
     /// <param name="knockback">Knockback caused by shot</param>
-    public static void Freeze(in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage = 0f , in float knockback = 0f)
+    public static void Freeze(in Team team, in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage = 0f , in float knockback = 0f)
     {
-        if (RaycastShot(out RaycastHit hit, origin, target, radius, range, mask, damage, knockback))
+        if (RaycastShot(out RaycastHit hit, team, origin, target, radius, range, mask, damage, knockback))
         {
-            ImpactEffects.AoE(hit.transform.position, damage, knockback, radius, mask, true);
+            ImpactEffects.AoE(team, hit.transform.position, damage, knockback, radius, mask, true);
             return;
         }
-        ImpactEffects.AoE(target, damage, knockback, radius, mask, true);
+        ImpactEffects.AoE(team, target, damage, knockback, radius, mask, true);
     }
 
 
@@ -136,6 +138,7 @@ public class Projectile : MonoBehaviour
     /// Fires a Raycast that teleports the player to position hit
     /// </summary>
     /// <param name="player">Player that will be moved</param>
+    /// <param name="team">Team that instagated damage</param>
     /// <param name="origin">Starting position of ray</param>
     /// <param name="target">Target of ray</param>
     /// <param name="radius">Thickness of ray</param>
@@ -143,9 +146,9 @@ public class Projectile : MonoBehaviour
     /// <param name="mask">Layer to be targeted</param>
     /// <param name="damage">Damage caused by shot</param>
     /// <param name="knockback">Knockback caused by shot</param>
-    public static void TeleportShot(ref GameObject player, in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage = 0f, in float knockback = 0f)
+    public static void TeleportShot(ref GameObject player, Team team, in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage = 0f, in float knockback = 0f)
     {
-        if (RaycastShot(out RaycastHit hit, origin, target, radius, range, mask, damage, knockback))
+        if (RaycastShot(out RaycastHit hit, team, origin, target, radius, range, mask, damage, knockback))
         {
             ImpactEffects.Teleport(hit.transform.position, ref player);
             return;
@@ -157,6 +160,7 @@ public class Projectile : MonoBehaviour
     /// Fires a Raycast that spawns object where it hits
     /// </summary>
     /// <param name="instance"></param>
+    /// <param name="team">Team that instagated damage</param>
     /// <param name="origin"></param>
     /// <param name="target"></param>
     /// <param name="radius"></param>
@@ -164,9 +168,9 @@ public class Projectile : MonoBehaviour
     /// <param name="mask"></param>
     /// <param name="damage"></param>
     /// <param name="knockback"></param>
-    public static void InstantiateShot(ref GameObject instance, in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage = 0f, in float knockback = 0f)
+    public static void InstantiateShot(ref GameObject instance, Team team, in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage = 0f, in float knockback = 0f)
     {
-        if (RaycastShot(out RaycastHit hit, origin, target, radius, range, mask, damage, knockback))
+        if (RaycastShot(out RaycastHit hit, team, origin, target, radius, range, mask, damage, knockback))
         {
             ImpactEffects.Spawn(hit.transform.position, ref instance);
             return;
@@ -174,13 +178,13 @@ public class Projectile : MonoBehaviour
         ImpactEffects.Spawn(target, ref instance);
     }
 
-    public static void Poison(in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage = 0f, in float knockback = 0f)
+    public static void Poison(in Team team, in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float damage = 0f, in float knockback = 0f)
     {
-        if (RaycastShot(out RaycastHit hit, origin, target, radius, range, mask, damage, knockback))
+        if (RaycastShot(out RaycastHit hit, team, origin, target, radius, range, mask, damage, knockback))
         {
-            if(hit.collider.gameObject.TryGetComponent(out Health health))
+            if(hit.collider.gameObject.TryGetComponent(out CharacterHealth health))
             {
-                health.ChangeHealthOverTime(damage);
+                health.Damage(team, damage, 1.0f, 5);
             }
         }
     }

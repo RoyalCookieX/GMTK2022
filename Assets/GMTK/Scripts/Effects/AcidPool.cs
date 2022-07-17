@@ -7,6 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class AcidPool : MonoBehaviour
 {
+    public Team Team { get; set; }
+
     BoxCollider _boxCollider;
     [SerializeField] float _damage = .1f;
 
@@ -18,9 +20,9 @@ public class AcidPool : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.TryGetComponent(out Health health))
+        if (other.TryGetComponent(out CharacterHealth health))
         {
-            health.ChangeHealth(_damage);
+            health.Damage(Team, _damage);
         }
     }
 }
