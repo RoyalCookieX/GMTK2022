@@ -49,9 +49,8 @@ public class ImpactEffects : MonoBehaviour
     /// </summary>
     /// <param name="position">Location where prjectiles will spawn</param>
     /// <param name="projectile">Projectile to spawn</param>
-    /// <param name="quantity">Number of projectiles to be spawned</param>
-    public static void Spawn(in Vector3 position, ref GameObject projectile, in int quantity)
+    public static void Spawn(in Vector3 position, ref GameObject projectile)
     {
-        
+        //TODO: Instantiate
     }
 }
