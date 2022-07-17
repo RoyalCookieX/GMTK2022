@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class CharacterMovement : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private NavMeshAgent _navMeshAgent;
 
     [Header("Properties")]
     [SerializeField] private float _moveSpeed = 30f;
@@ -27,6 +29,18 @@ public class CharacterMovement : MonoBehaviour
         MoveDirection = moveDirection.normalized;
     }
 
+    public void SetMoveLocation(Vector3 moveLocation)
+    {
+        _navMeshAgent.updatePosition = true;
+        _navMeshAgent.SetDestination(moveLocation);
+    }
+
+    public void StopMoveLocation()
+    {
+        _navMeshAgent.updatePosition = false;
+        _navMeshAgent.isStopped = true;
+    }
+
     public void SetJump(bool jump)
     {
         IsJumping = jump;
@@ -39,6 +53,11 @@ public class CharacterMovement : MonoBehaviour
         Vector3 diff = end - start;
 
         IsGrounded = Physics.SphereCast(start, _groundCheckRadius, diff.normalized, out RaycastHit _, diff.magnitude, _groundMask);
+    }
+
+    public void Start()
+    {
+        _navMeshAgent.updatePosition = false;
     }
 
     public void FixedUpdate()
@@ -68,11 +87,18 @@ public class CharacterMovement : MonoBehaviour
     {
         CheckGrounded();
 
+        // set grounded
         Gizmos.color = IsGrounded ? Color.green : Color.red;
         Vector3 start = transform.TransformPoint(_groundCheckStart);
         Vector3 end = transform.TransformPoint(_groundCheckEnd);
         Gizmos.DrawWireSphere(start, _groundCheckRadius);
         Gizmos.DrawWireSphere(end, _groundCheckRadius);
         Gizmos.DrawLine(start, end);
+
+        Gizmos.color = Color.blue;
+        for (int i = 0; i < _navMeshAgent.path.corners.Length; i++)
+        {
+            Gizmos.DrawWireCube(_navMeshAgent.path.corners[i], Vector3.one * 0.2f);
+        }
     }
 }
