@@ -98,6 +98,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
+    - _BlinkSpeed: 8
     - _BumpScale: 1
     - _CastShadows: 1
     - _ClearCoatMask: 0
@@ -116,12 +117,15 @@ Material:
     - _Glow_Bool: 1
     - _Metallic: 0
     - _NoiseScale: 1
+    - _Noise_Power: 3.35
     - _OcclusionStrength: 1
+    - _Outline_Power: 0.69
     - _Parallax: 0.005
-    - _Power: 2
+    - _Power: 3.56
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _Scale: 1
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -138,5 +142,7 @@ Material:
     - _Color: {r: 2.227451, g: 0, b: 2.4941177, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FrontColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Noise_Color: {r: 0.57547164, g: 0.34848538, b: 0, a: 0}
+    - _Outline_Color: {r: 1, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
