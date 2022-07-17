@@ -50,9 +50,9 @@ public class ImpactEffects : MonoBehaviour
     /// </summary>
     /// <param name="position">Location where prjectiles will spawn</param>
     /// <param name="projectile">Projectile to spawn</param>
-    public static void Spawn(in Vector3 position, ref GameObject projectile)
+    public static void Spawn(in Vector3 position, ref PooledObject projectile)
     {
         Vector3 newPosition = new(position.x, 0f, position.z);
-        //TODO: Instantiate
+        PoolSystem.Instance.Get(projectile, newPosition, Quaternion.identity);
     }
 }

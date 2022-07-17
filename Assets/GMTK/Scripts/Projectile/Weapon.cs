@@ -15,8 +15,8 @@ public class Weapon : MonoBehaviour
     private Vector3 _target;
     private int _selectedWeapon = 0;
 
-    [SerializeField] private GameObject _gravityWell;
-    [SerializeField] private GameObject _acidPool;
+    [SerializeField] private PooledObject _gravityWell;
+    [SerializeField] private PooledObject _acidPool;
 
     RaycastHit _hit = new();
     [SerializeField] private int _numberOfShots = 8;

@@ -348,8 +348,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _barrel: {fileID: 2841288271367613181}
-  _gravityWell: {fileID: 6484541443938927645, guid: f07b1272bccbe9042bf1ccfb9297dd7d,
+  _gravityWell: {fileID: 4514175990281663952, guid: f07b1272bccbe9042bf1ccfb9297dd7d,
     type: 3}
-  _acidPool: {fileID: 1471023298658912299, guid: 3095b5fc6b7253646b98a309952d6fa7,
+  _acidPool: {fileID: 4451378645144274622, guid: 3095b5fc6b7253646b98a309952d6fa7,
     type: 3}
   _numberOfShots: 8

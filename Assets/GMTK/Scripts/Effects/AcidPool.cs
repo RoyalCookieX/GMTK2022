@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
-public class AcidPool : MonoBehaviour
+public class AcidPool : PooledObject
 {
     public Team Team { get; set; }
 
@@ -17,6 +17,8 @@ public class AcidPool : MonoBehaviour
     {
         _boxCollider = GetComponent<BoxCollider>();
         _boxCollider.isTrigger = true;
+
+        StartCoroutine(DestroySelf());
 
     }
 
@@ -31,7 +33,7 @@ public class AcidPool : MonoBehaviour
     private IEnumerator DestroySelf()
     {
         yield return new WaitForSeconds(_life);
-        //TODO: Destroy self
+        Pool.Release(this);
     }
 
 

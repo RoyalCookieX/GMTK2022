@@ -169,7 +169,7 @@ public static class Projectile
     /// <param name="mask"></param>
     /// <param name="damage"></param>
     /// <param name="knockback"></param>
-    public static void InstantiateShot(ref GameObject instance, Team team, in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float inaccuracy, in float damage = 0f, in float knockback = 0f)
+    public static void InstantiateShot(ref PooledObject instance, Team team, in Vector3 origin, in Vector3 target, in float radius, in float range, in LayerMask mask, in float inaccuracy, in float damage = 0f, in float knockback = 0f)
     {
         if (RaycastShot(out RaycastHit hit, team, origin, target, radius, range, mask, damage, knockback, inaccuracy))
         {
