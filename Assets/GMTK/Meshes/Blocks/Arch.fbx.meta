@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: d177bfcc1b38752418b4f2b8c861948d
+guid: f91123c9a5e8edb4e8825093562d6bc1
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
   externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ArchMat
-    second: {fileID: 2100000, guid: 2c574faf0d97eb843bad08013a0513f0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
