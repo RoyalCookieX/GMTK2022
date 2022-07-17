@@ -11,23 +11,20 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private Rigidbody _rigidbody;
 
     [Header("Properties")]
-    [SerializeField] private float _maxVelocity = 6f;
     [SerializeField] private float _moveSpeed = 30f;
-    [SerializeField] private float _jumpStrength = 5f;
+    [SerializeField] private float _acceleration = 5f;
+    [SerializeField] private float _jumpHeight = 5f;
+    [SerializeField] private float _jumpGravity = 10f;
     [SerializeField, Range(0.01f, 1f)] private float _airControl = 0.35f;
     [SerializeField] private LayerMask _groundMask;
-    [SerializeField] private Vector3 _groundCheckBegin = new Vector3(0f, 0f, 0f);
+    [SerializeField] private Vector3 _groundCheckStart = new Vector3(0f, 0f, 0f);
     [SerializeField] private Vector3 _groundCheckEnd = new Vector3(0f, -1f, 0f);
     [SerializeField] private float _groundCheckRadius = 0.2f;
 
-    public void SetMoveDirection(Vector2 moveDirection)
+    public void SetMoveDirection(Vector3 moveDirection)
     {
-        MoveDirection = new Vector3(moveDirection.x, 0f, moveDirection.y) * _moveSpeed;
-    }
-
-    public void AddLookDelta(Vector2 lookDelta)
-    {
-        Yaw += lookDelta.x * Time.deltaTime;
+        moveDirection.y = 0f;
+        MoveDirection = moveDirection.normalized;
     }
 
     public void SetJump(bool jump)
@@ -35,46 +32,47 @@ public class CharacterMovement : MonoBehaviour
         IsJumping = jump;
     }
 
-    private void OnEnable()
+    private void CheckGrounded()
     {
-        Yaw = transform.rotation.eulerAngles.y;
+        Vector3 start = transform.TransformPoint(_groundCheckStart);
+        Vector3 end = transform.TransformPoint(_groundCheckEnd);
+        Vector3 diff = end - start;
+
+        IsGrounded = Physics.SphereCast(start, _groundCheckRadius, diff.normalized, out RaycastHit _, diff.magnitude, _groundMask);
     }
 
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
-        // check if character is grounded
-        Vector3 begin = transform.TransformPoint(_groundCheckBegin);
-        Vector3 end = transform.TransformPoint(_groundCheckEnd);
-        Vector3 displacement = end - begin;
-        Ray ray = new Ray(begin, displacement.normalized);
-        IsGrounded = Physics.SphereCast(ray, _groundCheckRadius, displacement.magnitude, _groundMask);
+        CheckGrounded();
 
-        // set movement & look
-        Vector3 moveDirection = MoveDirection;
-        if (!IsGrounded)
-            moveDirection *= _airControl;
-        _rigidbody.AddRelativeForce(moveDirection, ForceMode.Force);
-        _rigidbody.MoveRotation(Quaternion.Euler(Vector3.up * Yaw));
+        Vector3 targetVelocity = MoveDirection * _moveSpeed;
+        Vector3 velocityDiff = targetVelocity - _rigidbody.velocity;
+        velocityDiff.y = 0f;
 
-        // jump
-        if (IsJumping && IsGrounded)
-        {
-            // zero y velocity
-            _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z);
-            // jump
-            _rigidbody.AddForce(Vector3.up * _jumpStrength, ForceMode.Impulse);
-        }
+        float control = IsGrounded ? 1f : _airControl;
+        Vector3 acceleration = velocityDiff * (_acceleration * control);
+        acceleration += Vector3.down * _jumpGravity;
+        _rigidbody.AddForce(acceleration);
 
-        // clamp velocity
-        _rigidbody.velocity = Vector3.ClampMagnitude(_rigidbody.velocity, _maxVelocity);
+        if (!IsJumping || !IsGrounded)
+            return;
+
+        _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z);
+        float jumpVelocity = Mathf.Sqrt(_jumpGravity * _jumpHeight * 2f);
+        Vector3 velocity = _rigidbody.velocity;
+        velocity.y = jumpVelocity;
+        _rigidbody.velocity = velocity;
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = IsGrounded ? Color.green : Color.yellow;
-        Vector3 begin = transform.TransformPoint(_groundCheckBegin);
+        CheckGrounded();
+
+        Gizmos.color = IsGrounded ? Color.green : Color.red;
+        Vector3 start = transform.TransformPoint(_groundCheckStart);
         Vector3 end = transform.TransformPoint(_groundCheckEnd);
-        Gizmos.DrawLine(begin, end);
+        Gizmos.DrawWireSphere(start, _groundCheckRadius);
         Gizmos.DrawWireSphere(end, _groundCheckRadius);
+        Gizmos.DrawLine(start, end);
     }
 }
