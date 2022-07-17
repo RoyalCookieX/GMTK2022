@@ -106,9 +106,9 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _Noise_Power: 3.35
+    - _Noise_Power: 5
     - _OcclusionStrength: 1
-    - _Outline_Power: 0.81
+    - _Outline_Power: 8
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0

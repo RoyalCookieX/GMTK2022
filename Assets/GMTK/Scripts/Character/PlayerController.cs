@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _yawMultiplier;
     [SerializeField] private float _pitchMultiplier;
     [SerializeField] private Vector2 _pitchRange = new Vector2(-70f, 70f);
+    [SerializeField] private bool _isPaused;
 
     private Vector2 _yawPitch;
     private void OnMove(InputValue value)
@@ -38,5 +39,17 @@ public class PlayerController : MonoBehaviour
     private void OnShoot(InputValue value)
     {
         
+    }
+
+    private void OnPause(InputValue value)
+    {
+        if(_isPaused == true)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 }
