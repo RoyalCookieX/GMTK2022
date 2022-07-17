@@ -49,6 +49,14 @@ public class Weapon : MonoBehaviour
     {
         if (_currentCooldown > 0) return;
 
+        RaycastHit hit;
+        if(!Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit))
+        {
+            return;
+        }
+
+        _target = hit.point;
+
         switch (_selectedWeapon)
         {
             case 0:
