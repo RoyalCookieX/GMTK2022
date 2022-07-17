@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 5650358818565349400}
   - component: {fileID: 4981486705533336238}
   - component: {fileID: 4981486705533336239}
+  - component: {fileID: 8887250059108447680}
   - component: {fileID: 4981486705533336233}
   - component: {fileID: 4981486705533336236}
   - component: {fileID: 4981486705533336237}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,6 +77,39 @@ MonoBehaviour:
   _groundCheckStart: {x: 0, y: 0.5, z: 0}
   _groundCheckEnd: {x: 0, y: 0.3, z: 0}
   _groundCheckRadius: 0.4
+--- !u!114 &8887250059108447680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4981486705533336226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f84dcfac297e2e408ea662c73672ae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDead:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4981486705533336226}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _maxHealth: 100
+  _health: 70
+  _team: 1
 --- !u!195 &4981486705533336233
 NavMeshAgent:
   m_ObjectHideFlags: 0

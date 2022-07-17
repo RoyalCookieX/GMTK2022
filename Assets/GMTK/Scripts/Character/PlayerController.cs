@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [Header("Components")]
     [SerializeField] private CharacterMovement _characterMovement;
     [SerializeField] private PlayerCamera _playerCamera;
+    [SerializeField] private Weapon _weapon;
 
     [Header("Properties")]
     [SerializeField] private float _yawMultiplier;
@@ -38,7 +39,16 @@ public class PlayerController : MonoBehaviour
 
     private void OnShoot(InputValue value)
     {
-        
+        if (!value.isPressed)
+            return;
+        _weapon.OnShoot();
+    }
+
+    private void OnReload(InputValue value)
+    {
+        if (!value.isPressed)
+            return;
+        _weapon.OnReload();
     }
 
     private void OnPause(InputValue value)

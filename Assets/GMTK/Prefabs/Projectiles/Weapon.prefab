@@ -346,10 +346,13 @@ MonoBehaviour:
   _player: {fileID: 0}
   _wallMask:
     serializedVersion: 2
-    m_Bits: 0
-  _barrel: {fileID: 2841288271367613181}
+    m_Bits: 256
+  _firePoint: {fileID: 0}
   _gravityWell: {fileID: 4514175990281663952, guid: f07b1272bccbe9042bf1ccfb9297dd7d,
     type: 3}
   _acidPool: {fileID: 4451378645144274622, guid: 3095b5fc6b7253646b98a309952d6fa7,
     type: 3}
   _numberOfShots: 8
+  _enemyMask:
+    serializedVersion: 2
+    m_Bits: 128

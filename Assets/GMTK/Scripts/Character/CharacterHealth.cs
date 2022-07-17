@@ -6,13 +6,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-[Flags]
 public enum Team
 {
-    Ally = 0,
-    Enemy0 = (1 << 0),
-    Enemy1 = (1 << 1),
-    Enemy2 = (1 << 2)
+    Ally,
+    Enemy1,
+    Enemy2,
+    Enemy3
 }
 
 public class CharacterHealth : MonoBehaviour
@@ -37,6 +36,7 @@ public class CharacterHealth : MonoBehaviour
     /// <param name="amount">Value set to health</param>
     public void SetHealth(float amount)
     {
+        Debug.Log($"[{gameObject.name}]: ({_health}/{_maxHealth})");
         _health = Mathf.Clamp(amount, 0f, _maxHealth);
         _onHealthChanged?.Invoke(HealthPercentage);
         if(_health <= 0f)
@@ -104,6 +104,7 @@ public class CharacterHealth : MonoBehaviour
     /// </summary>
     public void Kill()
     {
+        Debug.Log($"[{gameObject.name}]: (DEAD)");
         _onDead?.Invoke();
     }
 
