@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 574293444203823175}
   - component: {fileID: 4157545285271345787}
   - component: {fileID: 8005880184149974600}
+  - component: {fileID: 7366642302536209707}
   m_Layer: 0
   m_Name: Half_Cylinder
   m_TagString: Untagged
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7366642302536209707
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3260961024502611835}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2310300479822750587, guid: e3ac886fc0ff5e942a82f3e08c6903d3, type: 3}
 --- !u!1 &8667388013789686051
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8287590706736395161}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Half_Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

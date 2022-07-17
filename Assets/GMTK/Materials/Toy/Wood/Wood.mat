@@ -45,6 +45,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
+    - _BlinkSpeed: 2
     - _CastShadows: 1
     - _Cull: 2
     - _Dither_Cap: 1.5
@@ -67,9 +68,9 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _BaseColor: {r: 0.5188679, g: 0.42608988, b: 0.3010413, a: 1}
+    - _BaseColor: {r: 0.6415094, g: 0.5137027, b: 0.33588463, a: 1}
     - _Color: {r: 2, g: 2, b: 2, a: 1}
-    - _FrontColor: {r: 0.16981131, g: 0.14166963, b: 0.09531861, a: 1}
+    - _FrontColor: {r: 0.1981132, g: 0.17366876, b: 0.13176396, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1003933215591390870
 MonoBehaviour:
