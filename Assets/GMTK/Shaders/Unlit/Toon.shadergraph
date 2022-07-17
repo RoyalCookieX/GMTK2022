@@ -140,6 +140,9 @@
         },
         {
             "m_Id": "9ac85aa377fe49419dfe12325f204a20"
+        },
+        {
+            "m_Id": "e0c2d7ef90d24dcba042b613397bec2c"
         }
     ],
     "m_GroupDatas": [],
@@ -583,6 +586,9 @@
             },
             {
                 "m_Id": "99a76f297a9247bcb535f28653dc8ffd"
+            },
+            {
+                "m_Id": "e0c2d7ef90d24dcba042b613397bec2c"
             }
         ]
     },
@@ -602,6 +608,9 @@
     "m_ActiveTargets": [
         {
             "m_Id": "11c345c2ffb8476f88bb35fd29805b54"
+        },
+        {
+            "m_Id": "b33483e2fc634c3785f04dfe00b4dfc3"
         }
     ]
 }
@@ -2957,6 +2966,14 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.VFXTarget",
+    "m_ObjectId": "b33483e2fc634c3785f04dfe00b4dfc3",
+    "m_Lit": false,
+    "m_AlphaTest": false
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "b3fa0f1580e4440d921a3b6caec6a186",
     "m_Id": 0,
@@ -3555,6 +3572,69 @@
         "e32": 0.0,
         "e33": 1.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.ColorRGBMaterialSlot",
+    "m_ObjectId": "dc940c303656471a9e57efe03ee1022a",
+    "m_Id": 0,
+    "m_DisplayName": "Emission",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Emission",
+    "m_StageCapability": 2,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": [],
+    "m_ColorMode": 1,
+    "m_DefaultColor": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 1.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BlockNode",
+    "m_ObjectId": "e0c2d7ef90d24dcba042b613397bec2c",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "SurfaceDescription.Emission",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 0.0,
+            "y": 0.0,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "dc940c303656471a9e57efe03ee1022a"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_SerializedDescriptor": "SurfaceDescription.Emission"
 }
 
 {
